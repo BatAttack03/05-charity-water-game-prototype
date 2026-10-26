@@ -1,13 +1,305 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Game</title>
-    <link rel="stylesheet" href="styles.css">
+  <!-- ========================================
+       PAGE SETTINGS
+  ========================================= -->
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>Water Whiskers | charity: water inspired typing game</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- JavaScript -->
+  <script src="script.js" defer></script>
 </head>
+
+
 <body>
-    <h1>Welcome to the Charity Water Game Prototype</h1>
-    <script src="script.js"></script>
+
+  <main class="game" aria-label="Water Whiskers typing game">
+
+
+    <!-- ========================================
+         HEADER / GAME HUD
+    ========================================= -->
+
+    <header class="hud">
+
+      <!-- Charity: Water Branding -->
+      <div class="brand sign">
+
+        <div class="brand-name">
+
+          <img
+            class="jerrycan"
+            src="./img/water-can-transparent.png"
+            alt="charity: water jerrycan logo"
+          >
+
+          <span>charity: water</span>
+
+        </div>
+
+        <p>
+          clean water<br>
+          brighter tomorrows
+          <span aria-hidden="true">♥</span>
+        </p>
+
+      </div>
+
+
+      <!-- Level Progress -->
+      <section
+        class="level sign"
+        aria-label="Level progress"
+      >
+
+        <div class="level-heading">
+
+          <strong>Level 1 · Village Well</strong>
+
+          <!-- Cat Lives (Placeholder) -->
+          <span class="cat-hearts" aria-hidden="true">
+            🐱 🐱 🐱
+          </span>
+
+        </div>
+
+        <div class="meter-row">
+
+          <progress
+            id="waterProgress"
+            max="100"
+            value="0"
+          >
+            0%
+          </progress>
+
+          <span aria-hidden="true">💧</span>
+
+        </div>
+
+        <span id="progressText" class="sr-only">
+          0 out of 100 water drops
+        </span>
+
+      </section>
+
+
+      <!-- Water Drop Score -->
+      <aside
+        class="score sign"
+        aria-label="Water score"
+      >
+
+        <span class="drop" aria-hidden="true">💧</span>
+
+        <div>
+
+          <strong id="score">0</strong>
+
+          <small>clean water points</small>
+
+        </div>
+
+      </aside>
+
+    </header>
+
+
+
+    <!-- ========================================
+         VILLAGE SCENE
+    ========================================= -->
+
+    <section
+      class="scene"
+      aria-label="Village scene placeholder"
+    >
+
+      <!-- Village Artwork Placeholder -->
+      <div class="scene-placeholder">
+
+        <span class="scene-emoji" aria-hidden="true">
+          🐈 💧 🐈
+        </span>
+
+        <strong>Cozy village coming soon!</strong>
+
+        <span>
+          Cat and village artwork will go here.
+        </span>
+
+      </div>
+
+
+      <!-- Mission Sign -->
+      <aside class="mission sign">
+
+        <span aria-hidden="true">🌎</span>
+
+        <p>
+          Every word helps fill our village well.
+          <span aria-hidden="true">💛</span>
+        </p>
+
+      </aside>
+
+
+      <!-- Words Give Water Sign -->
+      <aside class="words-sign sign">
+        WORDS<br>
+        GIVE WATER
+      </aside>
+
+    </section>
+
+
+
+    <!-- ========================================
+         TYPING INTERFACE
+    ========================================= -->
+
+    <section
+      class="typing sign"
+      aria-labelledby="typingTitle"
+    >
+
+      <!-- Typing Instructions -->
+      <label
+        id="typingTitle"
+        for="wordInput"
+      >
+        Type the word:
+      </label>
+
+
+      <!-- Target Word -->
+      <div
+        id="targetWord"
+        class="target-word"
+        aria-live="polite"
+      >
+        water
+      </div>
+
+
+      <!-- Player Input -->
+      <input
+        id="wordInput"
+        type="text"
+        placeholder="Type here, then press Enter"
+        aria-label="Type the displayed word and press Enter"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        enterkeyhint="done"
+      >
+
+
+      <!-- Player Feedback -->
+      <p
+        id="feedback"
+        class="feedback"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+    </section>
+
+
+
+    <!-- ========================================
+         BOTTOM BAR
+    ========================================= -->
+
+    <div class="bottom-bar">
+
+      <!-- Reset Button -->
+      <div class="controls">
+
+        <button
+          id="resetButton"
+          type="button"
+          title="Reset level"
+        >
+          ↻ <span>Reset</span>
+        </button>
+
+      </div>
+
+
+      <!-- Clean Water Fact Sign -->
+      <aside class="fact sign">
+
+        💡 Clean water helps people stay healthy,
+        go to school, and build brighter futures.
+
+        <span aria-hidden="true">💛</span>
+
+      </aside>
+
+    </div>
+
+
+
+    <!-- ========================================
+         CONFETTI CELEBRATION
+    ========================================= -->
+
+    <div
+      id="confettiContainer"
+      class="confetti-container"
+      aria-hidden="true"
+    ></div>
+
+
+
+    <!-- ========================================
+         WIN SCREEN
+    ========================================= -->
+
+    <div
+      id="winOverlay"
+      class="win-overlay"
+      hidden
+    >
+
+      <div class="win-card sign">
+
+        <h2>Village well filled! 💧</h2>
+
+        <p>You earned 100 water drops!</p>
+
+        <button
+          id="playAgainButton"
+          type="button"
+        >
+          Play again
+        </button>
+
+        <small>
+          Every drop makes a difference! 💛
+        </small>
+
+      </div>
+
+    </div>
+
+
+  </main>
+
 </body>
+
 </html>

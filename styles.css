@@ -1,15 +1,631 @@
-/* Charity: water Brand Colors
+/* ==========================================================
+   WATER WHISKERS — STYLES
+   Desktop target: 1440 × 900 | Mobile target: 390 × 844
+   ========================================================== */
 
-Primary Colors:
-- Yellow:     #FFC907
-- Blue:       #2E9DF7
+/* 1. BRAND COLORS & THEME */
+:root {
+  --yellow: #FFC907;
+  --blue: #2E9DF7;
+  --light-blue: #8BD1CB;
+  --green: #4FCB53;
+  --orange: #FF902A;
+  --red: #F5402C;
+  --dark-green: #159A48;
+  --pink: #F16061;
 
-Secondary Colors:
-- Light Blue: #8BD1CB
-- Green:      #4FCB53
-- Orange:     #FF902A
-- Red:        #F5402C
-- Dark Green: #159A48
-- Pink:       #F16061
+  --ink: #42291d;
+  --wood: #75482f;
+  --cream: #ffe6c6;
+  --paper: #fff1df;
+  --border: #b77b51;
+  --sky: #93c4e9;
 
-*/
+  --page-gutter: 2%;
+  --center-panel-width: 47%;
+}
+
+/* 2. GLOBAL & SHARED COMPONENTS */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Trebuchet MS', Verdana, sans-serif;
+  color: var(--ink);
+  background: var(--blue);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+}
+
+.game {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--blue);
+  isolation: isolate;
+}
+
+.sign {
+  background: var(--cream);
+  border: 3px solid var(--border);
+  box-shadow: 0 5px 0 #6b4531a6;
+  border-radius: 12px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 3. HEADER / SCORE / LEVEL PROGRESS */
+.hud {
+  position: absolute;
+  top: 2.3%;
+  left: var(--page-gutter);
+  right: var(--page-gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--center-panel-width) minmax(0, 1fr);
+  align-items: start;
+  gap: 2%;
+  z-index: 3;
+}
+
+.brand {
+  position: relative;
+  min-width: 0;
+  padding: 12px 16px;
+  background: var(--wood);
+  color: white;
+}
+
+.brand-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: bold clamp(16px, 2.2vw, 32px) Georgia, serif;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.jerrycan {
+  display: block;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.brand p {
+  position: absolute;
+  top: 70px;
+  left: 5%;
+  margin: 0;
+  padding: 8px 16px;
+  background: #edc69f;
+  border: 2px solid var(--border);
+  color: var(--wood);
+  font-size: clamp(12px, 1.3vw, 18px);
+  line-height: 1.25;
+  transform: rotate(-2deg);
+}
+
+.level {
+  min-width: 0;
+  padding: 10px 14px 12px;
+}
+
+.level-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: clamp(15px, 1.6vw, 24px);
+}
+
+.cat-hearts {
+  white-space: nowrap;
+  font-size: clamp(13px, 1.6vw, 23px);
+}
+
+.meter-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+}
+
+progress {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 21px;
+  border: 3px solid #354e6c;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #4b719a;
+}
+
+progress::-webkit-progress-bar {
+  background: #4b719a;
+}
+
+progress::-webkit-progress-value {
+  background: var(--blue);
+  border-radius: 15px;
+  transition: width .25s;
+}
+
+progress::-moz-progress-bar {
+  background: var(--blue);
+  border-radius: 15px;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 12px 8px;
+}
+
+.drop {
+  font-size: clamp(25px, 3.5vw, 46px);
+}
+
+.score strong {
+  display: block;
+  font-size: clamp(22px, 2.5vw, 36px);
+  line-height: 1;
+}
+
+.score small {
+  display: block;
+  margin-top: 3px;
+  font-size: clamp(10px, 1.1vw, 15px);
+}
+
+/* 4. VILLAGE PLACEHOLDER & DECORATIVE SIGNS */
+.scene {
+  position: absolute;
+  top: 18%;
+  right: var(--page-gutter);
+  bottom: 29%;
+  left: var(--page-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(55%, 580px);
+  height: 65%;
+  padding: 20px;
+  border: 3px dashed #966d4b;
+  border-radius: 24px;
+  background: #fff0d6a8;
+  text-align: center;
+  gap: 10px;
+}
+
+.scene-emoji {
+  font-size: clamp(36px, 5vw, 76px);
+}
+
+.scene-placeholder strong {
+  font-size: clamp(16px, 2vw, 26px);
+}
+
+.scene-placeholder span:last-child {
+  font-size: clamp(11px, 1.1vw, 15px);
+}
+
+.mission {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 8px;
+  width: 18%;
+  padding: 12px;
+  font-size: clamp(11px, 1vw, 15px);
+}
+
+.mission p {
+  margin: 0;
+}
+
+.words-sign {
+  position: absolute;
+  top: 29%;
+  left: 0;
+  padding: 14px;
+  background: #d9a66c;
+  font-size: clamp(13px, 1.4vw, 21px);
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 5. TYPING SIGN — SAME CENTER COLUMN AS PROGRESS */
+.typing {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: calc((100% - 2 * var(--page-gutter)) * .47);
+  max-width: none;
+  height: 190px;
+  padding: 14px 20px;
+  z-index: 4;
+}
+
+.typing label {
+  font-size: clamp(15px, 1.6vw, 22px);
+  font-weight: bold;
+}
+
+.target-word {
+  margin: 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.typing input {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 54px;
+  min-height: 0;
+  padding: 8px 12px;
+  border: 4px solid var(--yellow);
+  border-radius: 9px;
+  background: #fff9f0;
+  color: var(--ink);
+  text-align: center;
+  font-size: 24px;
+  outline-offset: 2px;
+}
+
+.typing input:focus {
+  outline: 2px solid var(--blue);
+}
+
+.feedback {
+  margin: 0;
+  min-height: 0;
+  text-align: center;
+  font-size: clamp(11px, 1vw, 14px);
+}
+
+.feedback:empty {
+  display: none;
+}
+
+.feedback.error {
+  color: #ad261a;
+}
+
+.feedback.success {
+  color: #087737;
+}
+
+/* 6. BOTTOM CONTROLS — SHARED BASELINE */
+.bottom-bar {
+  position: absolute;
+  right: var(--page-gutter);
+  bottom: 2.5%;
+  left: var(--page-gutter);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 3;
+}
+
+.controls {
+  display: flex;
+  align-items: flex-end;
+}
+
+.controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 8px 16px;
+  border: 3px solid var(--border);
+  border-radius: 8px;
+  background: var(--cream);
+  color: var(--ink);
+  font-weight: bold;
+}
+
+.fact {
+  width: 20%;
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* 7. WIN SCREEN */
+.win-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: #1f3547b8;
+}
+
+.win-overlay[hidden] {
+  display: none;
+}
+
+.win-card {
+  max-width: 380px;
+  padding: 28px;
+  text-align: center;
+}
+
+.win-card h2 {
+  margin-top: 0;
+}
+
+.win-card small {
+  display: block;
+  margin-top: 15px;
+}
+
+/* 8. CONFETTI CELEBRATION */
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 11;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 16px;
+  opacity: 0;
+  animation: confetti-fall 3s linear forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(110dvh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* 9. MOBILE — ALL MOBILE LAYOUT OVERRIDES IN ONE SECTION */
+@media (max-width: 650px) {
+  :root {
+    --page-gutter: 3%;
+  }
+
+  .hud {
+    top: 1.5%;
+    left: 3%;
+    right: 3%;
+    grid-template-columns: minmax(0, 1fr) 105px;
+    grid-template-rows: 42px 44px;
+    gap: 5px;
+  }
+
+  .brand {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 5px 7px;
+  }
+
+  .brand-name {
+    gap: 6px;
+    font-size: 15px;
+  }
+
+  .jerrycan {
+    width: 27px;
+    height: 27px;
+  }
+
+  .brand p {
+    display: none;
+  }
+
+  .score {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 4px;
+    gap: 2px;
+  }
+
+  .drop {
+    font-size: 21px;
+  }
+
+  .score strong {
+    font-size: 21px;
+  }
+
+  .score small {
+    font-size: 9px;
+  }
+
+  .level {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    padding: 4px 8px;
+  }
+
+  .level-heading {
+    font-size: 13px;
+  }
+
+  .cat-hearts {
+    font-size: 12px;
+  }
+
+  .meter-row {
+    margin-top: 1px;
+  }
+
+  progress {
+    height: 11px;
+    border-width: 2px;
+  }
+
+  /* Scene ends above the typing panel. */
+  .scene {
+    top: 15%;
+    right: 3%;
+    bottom: 42%;
+    left: 3%;
+  }
+
+  .scene-placeholder {
+    width: 100%;
+    height: 76%;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .scene-emoji {
+    font-size: 40px;
+  }
+
+  .scene-placeholder strong {
+    font-size: 17px;
+  }
+
+  .scene-placeholder span:last-child {
+    font-size: 12px;
+  }
+
+  .mission {
+    top: 0;
+    right: 0;
+    width: 46%;
+    padding: 5px;
+    font-size: 10px;
+  }
+
+  .words-sign {
+    top: 2%;
+    left: 0;
+    padding: 7px;
+    font-size: 11px;
+  }
+
+  .typing {
+    left: 3%;
+    right: 3%;
+    bottom: 15%;
+    transform: none;
+    width: 94%;
+    max-width: none;
+    height: min(190px, 24dvh);
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .typing label {
+    font-size: 17px;
+  }
+
+  .target-word {
+    font-size: 20px;
+  }
+
+  .typing input {
+    flex: 0 0 auto;
+    height: 48px;
+    min-height: 0;
+    font-size: 18px;
+  }
+
+  .feedback {
+    font-size: 11px;
+  }
+
+  .bottom-bar {
+    left: 3%;
+    right: 3%;
+    bottom: 1.5%;
+    align-items: flex-end;
+  }
+
+  .controls {
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    max-width: 46%;
+  }
+
+  .controls button {
+    height: 42px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .fact {
+    width: 52%;
+    padding: 8px;
+    font-size: 10px;
+  }
+}
+
+/* 10. ACCESSIBILITY — REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .confetti-piece {
+    animation: none;
+    display: none;
+  }
+}
